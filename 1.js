@@ -15,23 +15,25 @@ function shuffleChar(str, iterations) {
     }
 
     result = `${left}${right}`;
+    console.log(rounds, 'round');
     rounds -= 1;
 
     if (result === str) {
       rounds = iterations % (iterations - rounds);
+      console.log(rounds);
     }
   }
 
   return result;
 }
 
-console.log(shuffleChar('012345', 1));
+console.log(shuffleChar('012345', 6));
 
 // function shuffleChar(str, iterations) {
-//   let step = iterations;
+//   const step = iterations;
 //   let result = str;
 
-//   for (let index = 0; index < step; index += 1) {
+//   for (let index = 1; index <= step; index += 1) {
 //     let left = '';
 //     let right = '';
 
@@ -43,11 +45,10 @@ console.log(shuffleChar('012345', 1));
 //       }
 //     }
 
-//     result = `${left}${right}`;
+//     result = left + right;
 
 //     if (result === str) {
-//       step = iterations % (iterations - step);
-//       console.log(step);
+//       return shuffleChar(str, iterations % index);
 //     }
 //   }
 //   return result;
