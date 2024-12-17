@@ -1,57 +1,87 @@
-function shuffleChar(str, iterations) {
-  let rounds = iterations;
-  let result = str;
+// function getSpiralMatrix(length) {
+//   let upper = 0;
+//   let lower = length - 1;
+//   let left = 0;
+//   let right = length - 1;
+//   let i = 0;
+//   let j = 0;
+//   // const result = Array.from({ length }, (_) => []);
+//   const result = [];
 
-  while (rounds) {
-    let left = '';
-    let right = '';
-
-    for (let i = 0; i < result.length; i += 1) {
-      if (i % 2 !== 0) {
-        right += result[i];
-      } else {
-        left += result[i];
-      }
-    }
-
-    result = `${left}${right}`;
-    console.log(rounds, 'round');
-    rounds -= 1;
-
-    if (result === str) {
-      rounds = iterations % (iterations - rounds);
-      console.log(rounds);
-    }
-  }
-
-  return result;
-}
-
-console.log(shuffleChar('012345', 6));
-
-// function shuffleChar(str, iterations) {
-//   const step = iterations;
-//   let result = str;
-
-//   for (let index = 1; index <= step; index += 1) {
-//     let left = '';
-//     let right = '';
-
-//     for (let i = 0; i < str.length; i += 1) {
-//       if (i % 2 !== 0) {
-//         right += result[i];
-//       } else {
-//         left += result[i];
-//       }
-//     }
-
-//     result = left + right;
-
-//     if (result === str) {
-//       return shuffleChar(str, iterations % index);
-//     }
+//   for (let k = 0; k < length; k += 1) {
+//     result[k] = Array(length);
 //   }
+//   let value = 1;
+
+//   while (true) {
+//     if (upper++ > lower) break;
+
+//     for (; j < right; j++) result[i][j] = value++;
+//     if (right-- < left) break;
+
+//     for (; i < lower; i++) result[i][j] = value++;
+
+//     if (lower-- < upper) break;
+
+//     for (; j > left; j--) result[i][j] = value++;
+//     if (left++ > right) break;
+
+//     for (; i > upper; i--) result[i][j] = value++;
+//   }
+
+//   result[i][j] = value++;
 //   return result;
 // }
 
-// console.log(shuffleChar('qwerty', 6));
+// console.log(getSpiralMatrix(4));
+
+function getSpiralMatrix(length) {
+  let upper = 0;
+  let lower = length - 1;
+  let left = 0;
+  let right = length - 1;
+  let i = 0;
+  let j = 0;
+  // const result = Array.from({ length }, (_) => []);
+  const result = [];
+
+  for (let k = 0; k < length; k += 1) {
+    result[k] = Array(length);
+  }
+  let value = 1;
+
+  while (true) {
+    if (upper++ > lower) break;
+
+    for (; j < right; j += 1) {
+      result[i][j] = value;
+      value += 1;
+      right = -1;
+      if (right < left) break;
+    }
+
+    for (; i < lower; i += 1) {
+      result[i][j] = value;
+      value += 1;
+      lower = -1;
+      if (lower < upper) break;
+    }
+
+    for (; j > left; j -= 1) {
+      result[i][j] = value;
+      value += 1;
+      left += 1;
+      if (left > right) break;
+    }
+
+    for (; i > upper; i -= 1) {
+      result[i][j] = value;
+      value += 1;
+    }
+  }
+  result[i][j] = value;
+  value += 1;
+  return result;
+}
+
+console.log(getSpiralMatrix(4));
