@@ -92,22 +92,21 @@
 
 // console.log(getSpiralMatrix(4));
 
-function getSpiralMatrix(length) {
+function getSpiralMatrix(size) {
   let upper = 0;
-  let lower = length - 1;
+  let lower = size - 1;
   let left = 0;
-  let right = length - 1;
+  let right = size - 1;
   let i = 0;
   let j = 0;
-  // const result = Array.from({ length }, (_) => []);
   const result = [];
 
-  for (let k = 0; k < length; k += 1) {
-    result[k] = Array(length);
+  for (let k = 0; k < size; k += 1) {
+    result[k] = Array(size);
   }
   let value = 1;
 
-  while (true) {
+  for (let n = 0; n < result.length * size; n += 1) {
     if (upper > lower) break;
     upper += 1;
 
@@ -145,4 +144,4 @@ function getSpiralMatrix(length) {
   return result;
 }
 
-console.log(getSpiralMatrix(4));
+console.log(getSpiralMatrix(3));
