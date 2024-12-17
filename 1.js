@@ -16,7 +16,12 @@
 //   while (true) {
 //     if (upper++ > lower) break;
 
-//     for (; j < right; j++) result[i][j] = value++;
+//     for (; j < right; j++) {
+//       console.log(value);
+//       result[i][j] = value++;
+//       console.log(result[i][j], '-');
+//       console.log(value);
+//     }
 //     if (right-- < left) break;
 
 //     for (; i < lower; i++) result[i][j] = value++;
@@ -30,6 +35,58 @@
 //   }
 
 //   result[i][j] = value++;
+//   return result;
+// }
+
+// console.log(getSpiralMatrix(4));
+
+// function getSpiralMatrix(length) {
+//   let upper = 0;
+//   let lower = length - 1;
+//   let left = 0;
+//   let right = length - 1;
+//   let i = 0;
+//   let j = 0;
+//   // const result = Array.from({ length }, (_) => []);
+//   const result = [];
+
+//   for (let k = 0; k < length; k += 1) {
+//     result[k] = Array(length);
+//   }
+//   let value = 1;
+
+//   while (true) {
+//     if (upper > lower) break;
+//     upper += 1;
+
+//     for (; j < right; j += 1) {
+//       result[i][j] = value;
+//       value += 1;
+//     }
+//     if (right < left) break;
+//     right = -1;
+
+//     for (; i < lower; i += 1) {
+//       result[i][j] = value;
+//       value += 1;
+//     }
+//     if (lower < upper) break;
+//     lower = -1;
+
+//     for (; j > left; j -= 1) {
+//       result[i][j] = value;
+//       value += 1;
+//     }
+//     if (left > right) break;
+//     left += 1;
+
+//     for (; i > upper; i -= 1) {
+//       result[i][j] = value;
+//       value += 1;
+//     }
+//   }
+//   result[i][j] = value;
+//   value += 1;
 //   return result;
 // }
 
@@ -51,34 +108,38 @@ function getSpiralMatrix(length) {
   let value = 1;
 
   while (true) {
-    if (upper++ > lower) break;
+    if (upper > lower) break;
+    upper += 1;
 
     for (; j < right; j += 1) {
       result[i][j] = value;
       value += 1;
-      right = -1;
-      if (right < left) break;
     }
+    if (right < left) break;
+    right -= 1;
 
     for (; i < lower; i += 1) {
       result[i][j] = value;
       value += 1;
-      lower = -1;
-      if (lower < upper) break;
     }
+
+    if (lower < upper) break;
+    lower -= 1;
 
     for (; j > left; j -= 1) {
       result[i][j] = value;
       value += 1;
-      left += 1;
-      if (left > right) break;
     }
+
+    if (left > right) break;
+    left += 1;
 
     for (; i > upper; i -= 1) {
       result[i][j] = value;
       value += 1;
     }
   }
+
   result[i][j] = value;
   value += 1;
   return result;
